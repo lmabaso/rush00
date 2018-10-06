@@ -40,9 +40,14 @@ if (isset($_POST['submit']))
 				else
 				{
 <<<<<<< HEAD
+<<<<<<< HEAD
 					// $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 					$hashedPwd = hash('whirlpool', $pwd);
 					$sql = "INSERT INTO users (user_name, user_email, user_pwd) VALUES ('$username','$email' ,'$hashedPwd');";
+=======
+					$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+					$sql = "INSERT INTO users (user_name, user_email, user_pwd) VALUES ('$username','$email','$hashedPwd');";
+>>>>>>> 780cf0336e0f8f2cf898e0a1bdac15ea39db1bac
 =======
 					$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 					$sql = "INSERT INTO users (user_name, user_email, user_pwd) VALUES ('$username','$email','$hashedPwd');";

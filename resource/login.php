@@ -31,6 +31,7 @@ if (isset($_POST['submit']))
 			if ($row = mysqli_fetch_assoc($result))
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 				$hashedPasswordCheck = hash('whirlpool', salt.$password);
 				var_dump($hashedPasswordCheck);
 				var_dump($row['user_pwd']);
@@ -48,6 +49,8 @@ if (isset($_POST['submit']))
 				// 	exit();
 				// }
 =======
+=======
+>>>>>>> 780cf0336e0f8f2cf898e0a1bdac15ea39db1bac
 				$hashedPasswordCheck = password_verify($password, $row['user_pwd']);
 				//var_dump($hashedPasswordCheck);
 				if ($hashedPasswordCheck == false)
@@ -63,6 +66,9 @@ if (isset($_POST['submit']))
 					header("Location: ../index.php?login=success");
 					exit();
 				}
+<<<<<<< HEAD
+>>>>>>> 780cf0336e0f8f2cf898e0a1bdac15ea39db1bac
+=======
 >>>>>>> 780cf0336e0f8f2cf898e0a1bdac15ea39db1bac
 			}
 		}

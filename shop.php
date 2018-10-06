@@ -47,6 +47,7 @@ $result = mysqli_query($connS, $sql);
 <section class="main-container">
 		<h2>Shop</h2>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php
 
 if (mysqli_num_rows($result) > 0)
@@ -56,6 +57,8 @@ if (mysqli_num_rows($result) > 0)
 ?>
 					<div>
 =======
+=======
+>>>>>>> 780cf0336e0f8f2cf898e0a1bdac15ea39db1bac
 	<div class="shop-wrapper">
 		<?php
 		if (mysqli_num_rows($result) > 0)
@@ -65,6 +68,9 @@ if (mysqli_num_rows($result) > 0)
 				?>
 					<div class="item-container">
 						<img class="shop-item" src="<?php echo $row["sh_image"]; ?>" /><br/>
+<<<<<<< HEAD
+>>>>>>> 780cf0336e0f8f2cf898e0a1bdac15ea39db1bac
+=======
 >>>>>>> 780cf0336e0f8f2cf898e0a1bdac15ea39db1bac
 						<form action="shop.php?action=add&id<?php echo $row["sh_id"]; ?> method="post">
 						<div>
