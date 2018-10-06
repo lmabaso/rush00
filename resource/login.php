@@ -30,7 +30,7 @@ if (isset($_POST['submit']))
 			if ($row = mysqli_fetch_assoc($result))
 			{
 				$hashedPasswordCheck = password_verify($password, $row['user_pwd']);
-				var_dump($row['user_pwd']);
+				var_dump($hashedPasswordCheck);
 				// if ($hashedPasswordCheck == false)
 				// {
 				// 	header("Location: ../index.php?login=error2");

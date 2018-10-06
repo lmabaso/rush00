@@ -10,7 +10,6 @@ if (isset($_POST['submit']))
 	
 	if (empty($username) || empty($password) || empty($email))
 	{
-
 		header("Location: ../signup.php?signup=empty");
 		exit();
 	}
