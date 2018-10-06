@@ -42,6 +42,7 @@ else
 	return ;
 }
 mysqli_close($conn);
+
 $dbName = "shop";
 $conn = mysqli_connect($dbServicename, $dbUsername, $dbPassword, $dbName);
 $sql = "CREATE TABLE items (
@@ -60,5 +61,26 @@ else
 }
 mysqli_close($conn);
 
-
+$dbName = "shop";
+$files = scandir('../images');
+$conn = mysqli_connect($dbServicename, $dbUsername, $dbPassword, $dbName);
+foreach ($files as $v)
+{
+	if ($v != ".." && $v != "." && $v != ".DS_Store")
+	{
+		$name = $v;
+		$image = 'images/'.$v;
+		$price = 5;
+		$sql = "INSERT INTO items (sh_name, sh_image, sh_price) VALUES ('$name','$image' ,'$price');";
+		if (mysqli_query($conn, $sql))
+			echo $v." added to table\n";
+		else
+		{
+			echo "Table create failure" . $conn->error;
+			mysqli_close($conn);
+			return ;
+		}
+	}
+}
+mysqli_close($conn);
 ?>
