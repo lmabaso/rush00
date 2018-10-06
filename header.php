@@ -10,7 +10,7 @@ echo '<!DOCTYPE html>
 	<body>
 	<header>
 		<nav>
-			<div class="main-wrepper">
+			<div class="main-wrapper">
 				<ul>
 					<li><a href="index.php">Home </a></li>
 				</ul>
