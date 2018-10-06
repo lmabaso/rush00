@@ -125,6 +125,7 @@ header nav ul li a {
     font-size: 16px;
     color: #40798C;
     line-height: 63px;
+    margin-left: 20px;
 }
 
 header div.nav-login {
@@ -136,7 +137,7 @@ header div.nav-login {
 header div.nav-login form {
     float: left;
     padding-top: 15px;
-    width: 600px;
+    width:30%x;
     background-color: #42CAFD;
 }
 
@@ -145,7 +146,7 @@ header div.nav-login form input {
     padding: 0px 10px;
     margin-right: 10px;
     width: 140px;
-    height: 30px;
+    height: 26px;
     border: 2px solid white;
     background-color: #ccc;
     font-family: arial;
@@ -174,20 +175,24 @@ header div.nav-login form button:hover {
 header div.nav-login a {
     display: block;
     float: left;
+    margin-right: 30px;
+    margin-top: 15px;
     width: 60px;
-    height: 60px;
+    height: 26px;
     border: none;
-    background-color: #42CAFD;
+    border: 2px solid #40798C;
+    background-color: #E7E7E7;
     font-family: arial;
-    font-size: 16px;
+    font-size: 14px;
     color: #40798C;
-    line-height: 63px;
+    line-height: 26px;
+    text-align: center;
     cursor: pointer;
 }
 
 section.main-container {
     padding-top: 40px;
-
+    width: 100%;
 }
 
 section.main-container h2 {
@@ -236,5 +241,35 @@ form.signup-form button:hover {
     background-color: #40798C;
 }
 
+/* shop page */
 
+div.shop-wrapper {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    max-width: 100%;
+    grid-gap: 30px;
+    margin-top: 50px;
+}
+
+div.item-container {
+    justify-content: center;
+}
+
+div.item-container img{
+    width: 250px;
+}
+
+div.item-container input{
+    width: 125px;
+}
+
+input.addto {
+    background-color: #42CAFD;
+    color: #40798C;
+    border: none;
+}
 /* color-palette: #8E9AAF #42CAFD #1F363D #40798C #E7E7E7 */
+
+/* TO DO */
+/* add hover to add to cart btn*/

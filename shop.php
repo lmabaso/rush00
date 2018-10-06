@@ -45,25 +45,24 @@ $sql = "SELECT * FROM items";
 $result = mysqli_query($connS, $sql);
 ?>
 <section class="main-container">
-	<div class="main-wrapper">
 		<h2>Shop</h2>
+	<div class="shop-wrapper">
 		<?php
-		
 		if (mysqli_num_rows($result) > 0)
 		{
 			while ($row = mysqli_fetch_array($result))
 			{
 				?>
-					<div>
+					<div class="item-container">
+						<img class="shop-item" src="<?php echo $row["sh_image"]; ?>" /><br/>
 						<form action="shop.php?action=add&id<?php echo $row["sh_id"]; ?> method="post">
 						<div>
-						<img src="<?php echo $row["sh_image"]; ?>" /><br/>
 						<h4><?php echo $row["sh_name"]; ?> </h4>
 						<h4><?php echo $row["sh_price"]; ?> </h4>
-						<input type="text" name="quantity" value="1" />
+						<input type="number" name="quantity" value="1" />
 						<input type="hidden" name="hiden_name" value="<?php echo $row["sh_name"]; ?>" />
 						<input type="hidden" name="hiden_price" value="<?php echo $row["sh_price"]; ?>" />
-						<input type="submit" name="add_to_cart" value="Add to Cart" />
+						<input class="addto" type="submit" name="add_to_cart" value="Add to Cart" />
 						</div>
 						</form>
 					</div>

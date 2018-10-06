@@ -30,20 +30,20 @@ if (isset($_POST['submit']))
 			if ($row = mysqli_fetch_assoc($result))
 			{
 				$hashedPasswordCheck = password_verify($password, $row['user_pwd']);
-				var_dump($hashedPasswordCheck);
-				// if ($hashedPasswordCheck == false)
-				// {
-				// 	header("Location: ../index.php?login=error2");
-				// 	exit();
-				// }
-				// else if ($hashedPasswordCheck === true)
-				// {
-				// 	$_SESSION['u_id'] = $row['user_id'];
-				// 	$_SESSION['u_name'] = $row['user_name'];
-				// 	$_SESSION['u_email'] = $row['user_email'];
-				// 	header("Location: ../index.php?login=success");
-				// 	exit();
-				// }
+				//var_dump($hashedPasswordCheck);
+				if ($hashedPasswordCheck == false)
+				{
+					header("Location: ../index.php?login=".$row['user_pwd']);
+					exit();
+				}
+				else if ($hashedPasswordCheck === true)
+				{
+					$_SESSION['u_id'] = $row['user_id'];
+					$_SESSION['u_name'] = $row['user_name'];
+					$_SESSION['u_email'] = $row['user_email'];
+					header("Location: ../index.php?login=success");
+					exit();
+				}
 			}
 		}
 	}

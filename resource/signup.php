@@ -22,7 +22,7 @@ if (isset($_POST['submit']))
 			exit();
 		}
 		else {
-			if (filter_var($email, FILTER_VALIDATE_EMAIL))
+			if (!filter_var($email, FILTER_VALIDATE_EMAIL))
 			{
 				header("Location: ../signup.php?signup=email");
 				exit();
@@ -39,8 +39,8 @@ if (isset($_POST['submit']))
 				}
 				else
 				{
-					$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-					$sql = "INSERT INTO users (user_name, user_email, user_pwd) VALUES ('$username','$email' ,'$hashedPwd');";
+					$hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+					$sql = "INSERT INTO users (user_name, user_email, user_pwd) VALUES ('$username','$email','$hashedPwd');";
 					mysqli_query($conn, $sql);
 					header("Location: ../signup.php?signup=success");
 					exit();
