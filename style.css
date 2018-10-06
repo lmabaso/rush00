@@ -131,6 +131,8 @@ header div.nav-login {
     float: right;
 }
 
+/* header form*/
+
 header div.nav-login form {
     float: left;
     padding-top: 15px;
@@ -144,7 +146,7 @@ header div.nav-login form input {
     margin-right: 10px;
     width: 140px;
     height: 30px;
-    border: none;
+    border: 2px solid white;
     background-color: #ccc;
     font-family: arial;
     font-size: 14px;
