@@ -98,7 +98,7 @@ div.main-wrapper {
 }
 
 body {
-    background-color: #8E9AAF;
+    background-color: white;
 }
 
 a {
@@ -190,6 +190,16 @@ header div.nav-login a {
     cursor: pointer;
 }
 
+header div.active {
+    font-family: arial;
+    font-size: 14px;
+    color: #40798C;
+    margin-top: 22px;
+    display: block;
+    margin-right: 30px;
+    float: left;
+}
+
 section.main-container {
     padding-top: 40px;
     width: 100%;
@@ -246,18 +256,26 @@ form.signup-form button:hover {
 div.shop-wrapper {
     display: grid;
     justify-items: center;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
     max-width: 100%;
-    grid-gap: 30px;
+    grid-gap: 60px;
     margin-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 div.item-container {
+    background-color: #40798C;
     justify-content: center;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px grey;
+    padding: 10px;
+    text-align: center;
 }
 
 div.item-container img{
     width: 250px;
+    border-radius: 5px;
 }
 
 div.item-container input{
@@ -268,6 +286,39 @@ input.addto {
     background-color: #42CAFD;
     color: #40798C;
     border: none;
+    cursor: pointer;
+}
+
+div.table-wrapper table {
+    font-family: arial;
+    color: #40798C;
+    max-width: 80%;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.table-wrapper tr {
+    height: 20px;
+    border-bottom: 2px solid #8E9AAF;
+    padding-bottom: 5px;
+}
+
+div.table-wrapper {
+    font-family: arial;
+    color: #40798C;
+    text-align: center;
+    margin-top: 50px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.table-wrapper h3{
+    font-family: arial;
+    color: #40798C;
+    font-size: 24px;
+    text-align: center;
 }
 /* color-palette: #8E9AAF #42CAFD #1F363D #40798C #E7E7E7 */
 

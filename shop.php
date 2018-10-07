@@ -13,14 +13,14 @@ if (mysqli_connect_errno())
 	var_dump($_POST["add_to_cart"]);	
 if (isset($_POST["add_to_cart"]))
 {
-	if (isset($_SESSION["shopping_cart"]))
+	if (isset($_SESSION["shopping_cart"][0]))
 	{
 	var_dump($_SESSION["shopping_cart"]);
 		$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
-		if (!in_array($_GET["sh_id"], $item_array_id))
+		if (!in_array($_GET["id"], $item_array_id))
 		{
 			$count = count($_SESSION["shopping_cart"]);
-			$item_array = array('item_id' => $_GET["sh_id"], 'item_name' => $_POST["hiden_name"], 'item_price' => $_POST["hiden_price"], 'item_quantity' => $_POST["quantity"]);
+			$item_array = array('item_id' => $_GET["id"], 'item_name' => $_POST["hiden_name"], 'item_price' => $_POST["hiden_price"], 'item_quantity' => $_POST["quantity"]);
 			$_SESSION["shopping_cart"][$count] = $item_array;
 		}
 		else
@@ -31,7 +31,7 @@ if (isset($_POST["add_to_cart"]))
 	}
 	else
 	{
-		$item_array = array('item_id' => $_GET["sh_id"], 'item_name' => $_POST["hiden_name"], 'item_price' => $_POST["hiden_price"], 'item_quantity' => $_POST["quantity"]);
+		$item_array = array('item_id' => $_GET["id"], 'item_name' => $_POST["hiden_name"], 'item_price' => $_POST["hiden_price"], 'item_quantity' => $_POST["quantity"]);
 		$_SESSION["shopping_cart"][0] = $item_array;
 	}
 }
@@ -66,7 +66,7 @@ $result = mysqli_query($connS, $sql);
 ?>
 </div>
 <br />
-<div>
+<div class="table-wrapper">
 	<h3>Order Details</h3>
 	<div>
 		<table>
@@ -85,14 +85,14 @@ $result = mysqli_query($connS, $sql);
 				{
 			?>
 			<tr>
-				<td><?php echo $v["sh_name"]; ?></td>
-				<td><?php echo $v["sh_quantity"]; ?></td>
-				<td><?php echo $v["sh_price"]; ?></td>
-				<td><?php echo number_format($v["sh_quantity"] *  $v["sh_price"], 2); ?></td>
-				<td><a href="shop.php?action=delete$id=<?php echo $v['sh_id']; ?>">Remove</a></td>
+				<td><?php echo $v["item_name"]; ?></td>
+				<td><?php echo $v["item_quantity"]; ?></td>
+				<td><?php echo $v["item_price"]; ?></td>
+				<td><?php echo number_format($v["item_quantity"] *  $v["item_price"], 2); ?></td>
+				<td><a href="shop.php?action=delete$id=<?php echo $v['item_id']; ?>">Remove</a></td>
 			</tr>
 			<?php
-				$total = $total + ($v["sh_quantity"] * $v["sh_price"]);
+				$total = $total + ($v["item_quantity"] * $v["item_price"]);
 				}
 			}
 			?>

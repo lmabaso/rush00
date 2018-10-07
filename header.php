@@ -20,7 +20,10 @@ echo '<!DOCTYPE html>
 				<div class="nav-login">';
 if (isset($_SESSION['u_name']))
 {
-	echo '<form action="resource/logout.php" method="POST">
+	echo	'<div class="active">Logged in as :  ';
+	echo	$_SESSION["u_name"];
+	echo	'</div>';
+	echo    '<form action="resource/logout.php" method="POST">
 			<button name="submit">Logout</button>
 			</form>';
 }
