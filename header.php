@@ -18,7 +18,7 @@ echo '<!DOCTYPE html>
 					<li><a href="shop.php">Shop</a></li>
 				</ul>
 				<div class="nav-login">';
-if (isset($_SESSION['user_name']))
+if (isset($_SESSION['u_name']))
 {
 	echo '<form action="resource/logout.php" method="POST">
 			<button name="submit">Logout</button>
