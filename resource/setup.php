@@ -40,13 +40,21 @@ $sql = "CREATE TABLE users (
 	user_pwd varchar(256) not null
 );";
 if (mysqli_query($conn, $sql))
-	echo "Table create success";
+echo "Table create success";
 else
 {
 	echo "Table create failure" . $conn->error;
 	mysqli_close($conn);
 	return ;
 }
+mysqli_close($conn);
+
+//create admin profile;
+$conn = mysqli_connect($dbServicename, $dbUsername, $dbPassword, $dbName);
+$hashedPwd = password_hash("admin123", PASSWORD_DEFAULT);
+$sql = "INSERT INTO users (user_name, user_email, user_pwd) VALUES ('admin','admin' ,'$hashedPwd');";
+if (mysqli_query($conn, $sql))
+	echo "ADMIN created";
 mysqli_close($conn);
 
 //create table for shop items and cart

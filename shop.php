@@ -10,15 +10,27 @@ $connS = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbNameShop);
 if (mysqli_connect_errno())
 	echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	
-if (isset($_POST["add_to_cart"]))
+if (isset($_POST["add_to_cart"]) || $_GET['action'] == "delete")
 {
-	if (isset($_SESSION["shopping_cart"][0]))
+	if ($_GET['action'] == "delete")
+	{
+		$count = 0;
+		foreach($_SESSION["shopping_cart"] as $key => $item)
+		{
+			if ($key['item_id'][0] == $_GET['id']);
+			{
+				unset($_SESSION["shopping_cart"][$key]);
+			}
+		}
+	}
+	else if (isset($_SESSION["shopping_cart"][0]))
 	{
 		$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
 		if (!in_array($_GET["id"], $item_array_id))
 		{
 			$count = count($_SESSION["shopping_cart"]);
-			$item_array = array('item_id' => $_GET["id"], 'item_name' => $_POST["hiden_name"], 'item_price' => $_POST["hiden_price"], 'item_quantity' => $_POST["quantity"]);
+			$item_array = array('item_id' => $_GET["id"], 'item_name' =>
+			$_POST["hiden_name"], 'item_price' => $_POST["hiden_price"], 'item_quantity' => $_POST["quantity"]);
 			$_SESSION["shopping_cart"][$count] = $item_array;
 		}
 		else
@@ -30,6 +42,12 @@ if (isset($_POST["add_to_cart"]))
 	{
 		$item_array = array('item_id' => $_GET["id"], 'item_name' => $_POST["hiden_name"], 'item_price' => $_POST["hiden_price"], 'item_quantity' => $_POST["quantity"]);
 		$_SESSION["shopping_cart"][0] = $item_array;
+	}
+	$_SESSION['total'] == 0;
+	foreach($_SESSION["shopping_cart"] as $item)
+	{	
+		$total = $item['item_price'] * $item['item_quantity'];
+		$_SESSION['total'] == $_SESSION['total'] + $total;
 	}
 }
 $sql = "SELECT * FROM items";
@@ -100,13 +118,14 @@ $result = mysqli_query($connS, $sql);
 				<td><?php echo $v["item_quantity"]; ?></td>
 				<td><?php echo $v["item_price"]; ?></td>
 				<td><?php echo number_format($v["item_quantity"] *  $v["item_price"], 2); ?></td>
-				<td><a href="shop.php?action=delete$id=<?php echo $v['item_id']; ?>">Remove</a></td>
+				<td><a href="shop.php?action=delete&id=<?php echo $v['item_id']?>&categories=<?php echo $_SESSION['categories'];?>">Remove</a></td>
 			</tr>
 			<?php
 				$total = $total + ($v["item_quantity"] * $v["item_price"]);
 				}
 			}
 			?>
+			<tr></tr>
 		</table>
 	</div>
 </div>

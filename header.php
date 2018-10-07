@@ -20,6 +20,16 @@ echo '<!DOCTYPE html>
 				<div class="nav-login">';
 if (isset($_SESSION['u_name']))
 {
+	if ($_SESSION['u_name'] == "admin")
+		echo 	'<ul>
+					<li><a href="admin.php">Admin</a></li>
+				</ul>';
+	echo	'<div class="active">Cart - Items : ';
+	echo	count($_SESSION["shopping_cart"]);
+	echo	'</div>';
+	echo	'<div class="active">Total - R ';
+	echo	$_SESSION['total'];
+	echo	'</div>';
 	echo	'<div class="active">Logged in as :  ';
 	echo	$_SESSION["u_name"];
 	echo	'</div>';
