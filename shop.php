@@ -9,13 +9,11 @@ $dbNameShop = "shop";
 $connS = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbNameShop);
 if (mysqli_connect_errno())
 	echo "Failed to connect to MySQL: " . mysqli_connect_error();
-
-	var_dump($_POST["add_to_cart"]);	
+	
 if (isset($_POST["add_to_cart"]))
 {
 	if (isset($_SESSION["shopping_cart"][0]))
 	{
-	var_dump($_SESSION["shopping_cart"]);
 		$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
 		if (!in_array($_GET["id"], $item_array_id))
 		{
@@ -26,7 +24,6 @@ if (isset($_POST["add_to_cart"]))
 		else
 		{
 			echo '<script>alert("Item Already Added")</script>';
-			header("Location: shop.php");
 		}
 	}
 	else
@@ -40,15 +37,28 @@ $result = mysqli_query($connS, $sql);
 ?>
 <section class="main-container">
 	<h2>Shop</h2>
+	<div class="cat-wrapper">
+		<h3>Category : </h3>
+		<form action="shop.php" method="GET">
+		<select class="cat-select" name="categories" size="2">
+			<option value="monster">Monsters</option>
+			<option value="trap">Traps</option>
+		</select>
+		<input class="cat_btn" type="submit" name="category" value="Filter" />
+		</form>
+	</div>
 	<div class="shop-wrapper">
 	<?php
-	if (mysqli_num_rows($result) > 0)
+	if (mysqli_num_rows($result) > 0 && $_GET['categories'] != NULL)
 	{
 		while ($row = mysqli_fetch_array($result))
 		{
+			if (strstr($row['sh_category'], $_GET['categories']))
+			{
+				$_SESSION['categories'] = $_GET['categories'];
 	?>
 		<div class="item-container">
-			<form method="post" action="shop.php?action=add&id=<?php echo $row["sh_id"]; ?>">
+			<form method="post" action="shop.php?action=add&id=<?php echo $row["sh_id"];?>&categories=<?php echo $_SESSION['categories'];?>">
 				<img class="shop-item" src="<?php echo $row["sh_image"]; ?>" /><br/>
 				<div>
 					<h4><?php echo $row["sh_name"]; ?> </h4>
@@ -61,6 +71,7 @@ $result = mysqli_query($connS, $sql);
 			</form>
 		</div>
 	<?php
+			}
 	}
 }
 ?>

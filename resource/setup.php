@@ -57,22 +57,8 @@ $sql = "CREATE TABLE items (
 	sh_id int(11) not null AUTO_INCREMENT PRIMARY KEY,
 	sh_name varchar(256) not null,
 	sh_image varchar(256) not null,
-	sh_price float(11, 2) not null	
-);";
-if (mysqli_query($conn, $sql))
-	echo "Table (items) create success";
-else
-{
-	echo "Table (items) create failure" . $conn->error;
-	mysqli_close($conn);
-	return ;
-}
-$sql = "CREATE TABLE cart (
-	ca_id int(11) not null AUTO_INCREMENT PRIMARY KEY,
-	ca_name varchar(256) not null,
-	ca_image varchar(256) not null,
-	ca_price float(11, 2) not null,
-	ca_quant int(3) not null
+	sh_price float(11, 2) not null,
+	sh_category varchar(256) not null
 );";
 if (mysqli_query($conn, $sql))
 	echo "Table (cart) create success";
@@ -87,16 +73,57 @@ mysqli_close($conn);
 //add items to table
 
 $dbName = "shop";
-$files = scandir('../images');
 $conn = mysqli_connect($dbServicename, $dbUsername, $dbPassword, $dbName);
+$files = scandir('../images/monsters');
 foreach ($files as $v)
 {
 	if ($v != ".." && $v != "." && $v != ".DS_Store")
 	{
 		$name = $v;
-		$image = 'images/'.$v;
+		$image = 'images/monsters/'.$v;
 		$price = 5;
-		$sql = "INSERT INTO items (sh_name, sh_image, sh_price) VALUES ('$name','$image' ,'$price');";
+		$category = "monster";
+		$sql = "INSERT INTO items (sh_name, sh_image, sh_price, sh_category) VALUES ('$name','$image' ,'$price', '$category');";
+		if (mysqli_query($conn, $sql))
+			echo $v." added to table\n";
+		else
+		{
+			echo "Table create failure" . $conn->error;
+			mysqli_close($conn);
+			return ;
+		}
+	}
+}
+$files = scandir('../images/traps');
+foreach ($files as $v)
+{
+	if ($v != ".." && $v != "." && $v != ".DS_Store")
+	{
+		$name = $v;
+		$image = 'images/traps/'.$v;
+		$price = 5;
+		$category = "trap";
+		$sql = "INSERT INTO items (sh_name, sh_image, sh_price, sh_category) VALUES ('$name','$image' ,'$price', '$category');";
+		if (mysqli_query($conn, $sql))
+			echo $v." added to table\n";
+		else
+		{
+			echo "Table create failure" . $conn->error;
+			mysqli_close($conn);
+			return ;
+		}
+	}
+}
+$files = scandir('../images/pendulum');
+foreach ($files as $v)
+{
+	if ($v != ".." && $v != "." && $v != ".DS_Store")
+	{
+		$name = $v;
+		$image = 'images/pendulum/'.$v;
+		$price = 5;
+		$category = "monster/trap";
+		$sql = "INSERT INTO items (sh_name, sh_image, sh_price, sh_category) VALUES ('$name','$image' ,'$price', '$category');";
 		if (mysqli_query($conn, $sql))
 			echo $v." added to table\n";
 		else
